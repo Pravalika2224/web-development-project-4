@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hobby Gallery</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; text-align: center; background: #f0f0f0; }
+    .buttons button { margin: 5px; padding: 10px; }
+    .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 20px; }
+    .item { display: block; width: 200px; }
+    .item img { width: 100%; cursor: pointer; border-radius: 5px; }
+    #lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+    #lightbox img { max-width: 90%; max-height: 80%; }
+  </style>
+</head>
+<body>
+  <h1>Hobby Gallery</h1>
+  <div class="buttons">
+    <button onclick="filter('all')">All</button>
+    <button onclick="filter('music')">Music</button>
+    <button onclick="filter('art')">Art</button>
+    <button onclick="filter('sports')">Sports</button>
+  </div>
+  <div class="gallery">
+    <div class="item music"><img src="https://via.placeholder.com/200x150?text=Music" onclick="openLightbox(this.src)"></div>
+    <div class="item art"><img src="https://via.placeholder.com/200x150?text=Art" onclick="openLightbox(this.src)"></div>
+    <div class="item sports"><img src="https://via.placeholder.com/200x150?text=Sports" onclick="openLightbox(this.src)"></div>
+    <div class="item music"><img src="https://via.placeholder.com/200x150?text=Music+2" onclick="openLightbox(this.src)"></div>
+  </div>
+  <div id="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="">
+  </div>
+  <script>
+    function filter(cat) {
+      document.querySelectorAll('.item').forEach(i => {
+        i.style.display = (cat === 'all' || i.classList.contains(cat)) ? 'block' : 'none';
+      });
+    }
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
